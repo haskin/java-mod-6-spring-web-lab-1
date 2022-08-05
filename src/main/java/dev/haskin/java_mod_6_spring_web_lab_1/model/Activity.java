@@ -21,7 +21,7 @@ public class Activity {
     private Long id;
     private String name;
     private int difficulty;
-    private LocalDate createAt;
+    private LocalDate createdAt;
     private LocalDate updatedAt;
 
     @OneToMany(mappedBy = "activity")

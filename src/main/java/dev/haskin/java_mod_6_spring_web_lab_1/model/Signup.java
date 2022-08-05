@@ -8,16 +8,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import lombok.Data;
 
 @Entity
-@Table(name = "singups")
+@Table(name = "signups")
 @Data
 public class Signup {
     @Id
     @GeneratedValue
     private Long id;
+    @Min(0)
+    @Max(23)
     private int time;
     private LocalDate createdAt;
     private LocalDate updatedAt;
