@@ -10,7 +10,6 @@ public class JavaMod6SpringWebLab1Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(JavaMod6SpringWebLab1Application.class, args);
-		System.out.println(LocalDate.now());
 	}
 
 }
