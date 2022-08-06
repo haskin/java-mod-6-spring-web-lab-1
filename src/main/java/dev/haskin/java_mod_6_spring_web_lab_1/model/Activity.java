@@ -25,5 +25,5 @@ public class Activity {
     private LocalDate updatedAt;
 
     @OneToMany(mappedBy = "activity")
-    List<Signup> singups = new ArrayList<>();
+    List<Signup> signups = new ArrayList<>();
 }
