@@ -1,8 +1,6 @@
 package dev.haskin.java_mod_6_spring_web_lab_1.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.haskin.java_mod_6_spring_web_lab_1.dto.ActivityDTO;
 import dev.haskin.java_mod_6_spring_web_lab_1.model.Activity;
 import dev.haskin.java_mod_6_spring_web_lab_1.repository.ActivityRepository;
+import dev.haskin.java_mod_6_spring_web_lab_1.util.MapperUtil;
 
 @RestController
 @RequestMapping("/activities")
@@ -24,11 +23,19 @@ public class ActivityController {
     @Autowired
     ModelMapper modelMapper;
 
+    @Autowired
+    MapperUtil<List<Activity>, ActivityDTO> mapperUtil;
+
     @GetMapping
     List<ActivityDTO> getActivities() {
         List<Activity> activities = activityRepository.findAll();
-        return activities.stream()
-                .map(activity -> modelMapper.map(activity, ActivityDTO.class))
-                .collect(Collectors.toList());
+        return mapperUtil.mapList(activities, ActivityDTO.class);
     }
+    // @GetMapping
+    // <ActivityDTO> getActivities() {
+    // List<Activity> activities = activityRepository.findAll();
+    // s.stream()
+    // .map(activity -> modelMapper.map(activity, ActivityDTO.class))
+    // .collect(Collectors.toList());
+    // }
 }
