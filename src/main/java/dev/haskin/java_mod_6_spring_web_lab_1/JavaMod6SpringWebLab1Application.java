@@ -29,7 +29,7 @@ public class JavaMod6SpringWebLab1Application {
 	@Bean
 	@Transactional
 	CommandLineRunner runner(ActivityRepository activityRepository, CamperRepository camperRepository,
-			SignupRepository signupRepository, ModelMapper ModelMapper) {
+			SignupRepository signupRepository) {
 		return (args) -> {
 			Activity archery = activityRepository
 					.save(new Activity(1L, "Archery", 2, LocalDate.now(), LocalDate.now(), new ArrayList<>()));
