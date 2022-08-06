@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,6 +38,6 @@ public class Camper {
     private int age;
     private LocalDate createdAt;
     private LocalDate updatedAt;
-    @OneToMany(mappedBy = "camper")
+    @OneToMany(mappedBy = "camper", cascade = CascadeType.REMOVE)
     List<Signup> signups = new ArrayList<>();
 }

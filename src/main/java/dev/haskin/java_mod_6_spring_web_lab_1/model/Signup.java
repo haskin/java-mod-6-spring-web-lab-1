@@ -2,6 +2,7 @@ package dev.haskin.java_mod_6_spring_web_lab_1.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;

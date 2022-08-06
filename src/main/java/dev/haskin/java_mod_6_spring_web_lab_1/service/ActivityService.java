@@ -38,6 +38,7 @@ public class ActivityService {
     public ActivityDTO deleteActivityById(Long id) {
         Activity activity = readActivityById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Activity not found"));
+        activityRepository.delete(activity);
         return modelMapper.map(activity, ActivityDTO.class);
     }
 }
