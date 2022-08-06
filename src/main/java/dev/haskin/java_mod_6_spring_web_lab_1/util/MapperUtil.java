@@ -8,10 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MapperUtil<S, T> {
+public class MapperUtil {
     @Autowired
     ModelMapper modelMapper;
 
+    @SuppressWarnings("unchecked")
     public <S, T> List<T> mapList(List<S> source, Class<T> targetClass) {
         return source
                 .stream()

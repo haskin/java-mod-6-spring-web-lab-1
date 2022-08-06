@@ -33,7 +33,7 @@ public class CamperController {
     ModelMapper modelMapper;
 
     @Autowired
-    MapperUtil<List<Camper>, CamperDTO> mapperUtil;
+    MapperUtil mapperUtil;
 
     @GetMapping
     public List<CamperDTO> getAllCampers() {
