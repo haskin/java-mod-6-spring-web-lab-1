@@ -32,7 +32,10 @@ public class SignupService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "validation error")));
         try {
             signup = signupRepository.save(signup);
-            return modelMapper.map(signup, SignupDTO.class);
+            signupDTO = modelMapper.map(signup, SignupDTO.class);
+            signupDTO.setActivityId(signup.getActivity().getId());
+            signupDTO.setCamperId(signup.getCamper().getId());
+            return signupDTO;
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "validation errors");
         }

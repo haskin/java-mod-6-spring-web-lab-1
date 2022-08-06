@@ -34,8 +34,6 @@ public class CamperService {
     public List<CamperDTO> readAllCampers() {
         List<Camper> campers = camperRepository.findAll();
         List<CamperDTO> campersDTO = mapperUtil.mapList(camperRepository.findAll(), CamperDTO.class);
-        // campers.stream().map(camper -> (HashMap<Camper, List<Signup>>)Map.of(camper,
-        // camper.getSignups())).;
         IntStream.range(0, campers.size())
                 .forEach(i -> campersDTO.get(i).setActivities(
                         campers.get(i).getSignups().stream()
