@@ -16,10 +16,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.NonNull;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "campers")
 @Data
+@NoArgsConstructor
 public class Camper {
     @Id
     @GeneratedValue
