@@ -18,7 +18,7 @@ public class SignupService {
     @Autowired
     ModelMapper modelMapper;
 
-    SignupDTO createSignup(SignupDTO signupDTO) {
+    public SignupDTO createSignup(SignupDTO signupDTO) {
         Signup signup = modelMapper.map(signupDTO, Signup.class);
         try {
             signup = signupRepository.save(signup);
