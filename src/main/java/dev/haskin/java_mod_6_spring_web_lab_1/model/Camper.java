@@ -17,12 +17,14 @@ import javax.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.NonNull;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "campers")
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 public class Camper {
     @Id

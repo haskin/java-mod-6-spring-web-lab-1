@@ -11,11 +11,15 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "signups")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Signup {
     @Id
     @GeneratedValue
