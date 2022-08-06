@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
@@ -34,5 +35,7 @@ public class Camper {
     private LocalDate createdAt;
     private LocalDate updatedAt;
     @OneToMany(mappedBy = "camper")
-    List<Signup> singups = new ArrayList<>();
+    List<Signup> signups = new ArrayList<>();
+    @Transient
+    List<Activity> activities = new ArrayList();
 }
