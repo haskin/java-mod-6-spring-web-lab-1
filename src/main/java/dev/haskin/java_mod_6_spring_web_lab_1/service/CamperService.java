@@ -3,6 +3,7 @@ package dev.haskin.java_mod_6_spring_web_lab_1.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,17 @@ public class CamperService {
     MapperUtil mapperUtil;
 
     public List<CamperDTO> readAllCampers() {
-        return mapperUtil.mapList(camperRepository.findAll(), CamperDTO.class);
+        List<Camper> campers = camperRepository.findAll();
+        List<CamperDTO> campersDTO = mapperUtil.mapList(camperRepository.findAll(), CamperDTO.class);
+        // campers.stream().map(camper -> (HashMap<Camper, List<Signup>>)Map.of(camper,
+        // camper.getSignups())).;
+        IntStream.range(0, campers.size())
+                .forEach(i -> campersDTO.get(i).setActivities(
+                        campers.get(i).getSignups().stream()
+                                .map(Signup::getActivity)
+                                .map(activity -> modelMapper.map(activity, ActivityDTO.class))
+                                .collect(Collectors.toList())));
+        return campersDTO;
     }
 
     public CamperDTO readCamperById(Long id) {
