@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -50,5 +52,16 @@ public class CamperController {
                         .map(activity -> modelMapper.map(activity, ActivityDTO.class))
                         .collect(Collectors.toList()));
         return camperDTO;
+    }
+
+    @PostMapping
+    public CamperDTO postCamper(@RequestBody CamperDTO camperDTO) {
+        Camper camper = modelMapper.map(camperDTO, Camper.class);
+        try {
+            camper = camperRepository.save(camper);
+            return modelMapper.map(camper, CamperDTO.class);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "validation errors");
+        }
     }
 }

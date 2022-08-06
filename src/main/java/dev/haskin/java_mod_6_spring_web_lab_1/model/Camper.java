@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -25,7 +26,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Camper {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @NonNull
     private String name;
@@ -36,6 +37,4 @@ public class Camper {
     private LocalDate updatedAt;
     @OneToMany(mappedBy = "camper")
     List<Signup> signups = new ArrayList<>();
-    @Transient
-    List<Activity> activities = new ArrayList();
 }
