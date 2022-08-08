@@ -15,6 +15,10 @@ import javax.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+/*
+ * Validation:
+ * - must have a time between 0 and 23 (referring to the hour of day for the activity)
+ */
 
 @Entity
 @Table(name = "signups")
