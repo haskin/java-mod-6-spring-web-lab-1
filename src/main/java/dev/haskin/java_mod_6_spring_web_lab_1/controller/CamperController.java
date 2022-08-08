@@ -31,7 +31,7 @@ public class CamperController {
     }
 
     @PostMapping
-    public CamperDTO postCamper(@RequestBody CamperDTO camperDTO) {
+    public CamperNoActivityDTO postCamper(@RequestBody CamperDTO camperDTO) {
         return camperService.createCamper(camperDTO);
     }
 }

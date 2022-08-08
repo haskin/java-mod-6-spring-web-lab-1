@@ -22,6 +22,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Validations:
+ * x must have a name
+ * x must have an age between 8 and 18
+ */
 @Entity
 @Table(name = "campers")
 @Data

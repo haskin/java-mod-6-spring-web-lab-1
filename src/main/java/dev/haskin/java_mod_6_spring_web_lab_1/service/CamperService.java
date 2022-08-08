@@ -54,11 +54,11 @@ public class CamperService {
         return camperDTO;
     }
 
-    public CamperDTO createCamper(CamperDTO camperDTO) {
-        Camper camper = modelMapper.map(camperDTO, Camper.class);
+    public CamperNoActivityDTO createCamper(CamperDTO camperDTO) {
         try {
+            Camper camper = modelMapper.map(camperDTO, Camper.class);
             camper = camperRepository.save(camper);
-            return modelMapper.map(camper, CamperDTO.class);
+            return modelMapper.map(camper, CamperNoActivityDTO.class);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "validation errors");
         }
