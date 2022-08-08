@@ -3,7 +3,6 @@ package dev.haskin.java_mod_6_spring_web_lab_1.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import dev.haskin.java_mod_6_spring_web_lab_1.dto.ActivityDTO;
 import dev.haskin.java_mod_6_spring_web_lab_1.dto.CamperDTO;
+import dev.haskin.java_mod_6_spring_web_lab_1.dto.CamperNoActivityDTO;
 import dev.haskin.java_mod_6_spring_web_lab_1.model.Activity;
 import dev.haskin.java_mod_6_spring_web_lab_1.model.Camper;
 import dev.haskin.java_mod_6_spring_web_lab_1.model.Signup;
@@ -31,15 +31,16 @@ public class CamperService {
     @Autowired
     MapperUtil mapperUtil;
 
-    public List<CamperDTO> readAllCampers() {
+    public List<CamperNoActivityDTO> readAllCampers() {
         List<Camper> campers = camperRepository.findAll();
-        List<CamperDTO> campersDTO = mapperUtil.mapList(camperRepository.findAll(), CamperDTO.class);
-        IntStream.range(0, campers.size())
-                .forEach(i -> campersDTO.get(i).setActivities(
-                        campers.get(i).getSignups().stream()
-                                .map(Signup::getActivity)
-                                .map(activity -> modelMapper.map(activity, ActivityDTO.class))
-                                .collect(Collectors.toList())));
+        List<CamperNoActivityDTO> campersDTO = mapperUtil.mapList(camperRepository.findAll(),
+                CamperNoActivityDTO.class);
+        // IntStream.range(0, campers.size())
+        // .forEach(i -> campersDTO.get(i).setActivities(
+        // campers.get(i).getSignups().stream()
+        // .map(Signup::getActivity)
+        // .map(activity -> modelMapper.map(activity, ActivityDTO.class))
+        // .collect(Collectors.toList())));
         return campersDTO;
     }
 
