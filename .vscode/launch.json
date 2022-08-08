@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-JavaMod6SpringWebLab1Application<java_mod_6_spring_web_lab_1>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "dev.haskin.java_mod_6_spring_web_lab_1.JavaMod6SpringWebLab1Application",
+            "projectName": "java_mod_6_spring_web_lab_1",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
