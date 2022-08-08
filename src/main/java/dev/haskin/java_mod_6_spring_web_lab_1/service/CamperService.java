@@ -1,6 +1,7 @@
 
 package dev.haskin.java_mod_6_spring_web_lab_1.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,6 +58,8 @@ public class CamperService {
     public CamperNoActivityDTO createCamper(CamperDTO camperDTO) {
         try {
             Camper camper = modelMapper.map(camperDTO, Camper.class);
+            camper.setCreatedAt(LocalDate.now());
+            camper.setUpdatedAt(LocalDate.now());
             camper = camperRepository.save(camper);
             return modelMapper.map(camper, CamperNoActivityDTO.class);
         } catch (Exception e) {
