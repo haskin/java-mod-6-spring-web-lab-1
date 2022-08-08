@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import dev.haskin.java_mod_6_spring_web_lab_1.dto.ActivityDTO;
 import dev.haskin.java_mod_6_spring_web_lab_1.dto.SignupDTO;
 import dev.haskin.java_mod_6_spring_web_lab_1.model.Signup;
 import dev.haskin.java_mod_6_spring_web_lab_1.repository.ActivityRepository;
@@ -24,7 +25,7 @@ public class SignupService {
     @Autowired
     ModelMapper modelMapper;
 
-    public SignupDTO createSignup(SignupDTO signupDTO) {
+    public ActivityDTO createSignup(SignupDTO signupDTO) {
         Signup signup = modelMapper.map(signupDTO, Signup.class);
         signup.setCamper(camperRepository.findById(signupDTO.getCamperId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "validation error")));
@@ -32,10 +33,11 @@ public class SignupService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "validation error")));
         try {
             signup = signupRepository.save(signup);
-            signupDTO = modelMapper.map(signup, SignupDTO.class);
-            signupDTO.setActivityId(signup.getActivity().getId());
-            signupDTO.setCamperId(signup.getCamper().getId());
-            return signupDTO;
+            // signupDTO = modelMapper.map(signup, SignupDTO.class);
+            // signupDTO.setActivityId(signup.getActivity().getId());
+            // signupDTO.setCamperId(signup.getCamper().getId());
+            return modelMapper.map(signup.getActivity(), ActivityDTO.class);
+            // return signupDTO;
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "validation errors");
         }
